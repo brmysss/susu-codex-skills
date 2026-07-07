@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bilibili Video Note"
+  short_description: "Create visual notes from Bilibili videos"
+  default_prompt: "Use $bilibili-video-note to turn this Bilibili video link into an offline visual note HTML and long-image slices."
