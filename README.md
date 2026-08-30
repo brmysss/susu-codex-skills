@@ -4,6 +4,25 @@
 
 ## Skills
 
+### fact-opinion-judgment
+
+对文章、社交媒体内容、音视频转写稿或用户提供的文本做“事实和观点判断”：逐条拆出事实性断言、观点、立场、行动建议、论据和隐含假设，并列出名词、动词、形容词、副词及评价/模态词。
+
+它适合：
+
+- 区分原文中的事实性断言、观点、解释和行动建议
+- 检查观点背后的论据、论证、假设与证据缺口
+- 分析作者如何通过词性、评价词、模态词和范围词表达立场
+- 处理网页文章、X/论坛内容、音视频转写稿和本地 Markdown
+
+路径：
+
+```text
+skills/fact-opinion-judgment/
+```
+
+可分发包：[fact-opinion-judgment.skill](fact-opinion-judgment.skill)
+
 ### bilibili-video-note
 
 把 B 站或其他在线视频链接处理成离线图解笔记、结构化学习笔记和长图切片。
