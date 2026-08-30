@@ -1,4 +1,4 @@
 interface:
   display_name: "事实和观点判断"
-  short_description: "拆解事实、观点、论证与词性"
-  default_prompt: "使用 $fact-opinion-judgment 分析这篇文章、这条内容或这份转写稿，列出事实性断言、观点、论据、隐含假设和名词动词形容词副词。"
+  short_description: "拆解事实、观点、论证与词性并生成网页报告"
+  default_prompt: "使用 $fact-opinion-judgment 分析这篇文章、这条内容或这份转写稿，列出事实性断言、观点、论据、隐含假设和名词动词形容词副词；如果用户要求 HTML 或网页报告，再生成带原文高亮、点击浮窗和结构化表格的自包含页面。"
