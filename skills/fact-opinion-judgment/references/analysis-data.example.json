@@ -1,0 +1,105 @@
+{
+  "appVersion": "0.4.0",
+  "source": {
+    "title": "一个可验证的判断",
+    "type": "用户粘贴",
+    "url": "",
+    "scope": "全文",
+    "paragraphs": [
+      {
+        "id": "P01",
+        "segments": [
+          { "text": "一个好的判断，应当区分" },
+          { "text": "事实", "tokenId": "t01" },
+          { "text": "和" },
+          { "text": "观点", "tokenId": "t02" },
+          { "text": "。" }
+        ]
+      },
+      {
+        "id": "P02",
+        "segments": [
+          { "text": "先保留证据，再" },
+          { "text": "核验", "tokenId": "t03" },
+          { "text": "结论。" }
+        ]
+      }
+    ]
+  },
+  "summary": {
+    "thesis": "判断时应把可核验的事实与解释性的观点分开。",
+    "structure": ["提出区分", "强调证据", "给出方法"]
+  },
+  "factualClaims": [
+    {
+      "id": "F01",
+      "claim": "原文提出事实与观点应当区分",
+      "attribution": "作者主张",
+      "status": "原文称述",
+      "source": "P01",
+      "evidence": "原文直接表达"
+    }
+  ],
+  "opinions": [
+    {
+      "id": "O01",
+      "claim": "先保留证据有助于减少过早下结论",
+      "type": "方法／因果",
+      "source": "P02",
+      "support": "弱",
+      "gap": "未提供实证材料"
+    }
+  ],
+  "actions": [
+    {
+      "id": "A01",
+      "action": "在下结论前先核验材料",
+      "source": "P02",
+      "boundary": "材料不足时保留不确定性"
+    }
+  ],
+  "argumentChain": [
+    {
+      "step": "材料 → 论证 → 结论",
+      "content": "先区分事实和观点，再根据证据判断",
+      "source": "P01–P02",
+      "note": "示例论证"
+    }
+  ],
+  "tokens": [
+    {
+      "id": "t01",
+      "word": "事实",
+      "pos": "noun",
+      "role": "对象或概念",
+      "lens": "事实视角",
+      "note": "被讨论的分析对象",
+      "sentence": "一个好的判断，应当区分事实和观点。",
+      "source": "P01"
+    },
+    {
+      "id": "t02",
+      "word": "观点",
+      "pos": "noun",
+      "role": "对象或概念",
+      "lens": "观点视角",
+      "note": "被讨论的分析对象",
+      "sentence": "一个好的判断，应当区分事实和观点。",
+      "source": "P01"
+    },
+    {
+      "id": "t03",
+      "word": "核验",
+      "pos": "verb",
+      "role": "行为",
+      "lens": "方法视角",
+      "note": "表示对材料进行检查",
+      "sentence": "先保留证据，再核验结论。",
+      "source": "P02"
+    }
+  ],
+  "footerLink": {
+    "label": "进入苏苏的博客主页",
+    "url": "https://blog.brmys.cn"
+  }
+}

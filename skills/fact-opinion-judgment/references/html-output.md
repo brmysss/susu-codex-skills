@@ -19,12 +19,21 @@
 
 ```js
 {
-  appVersion: "0.2.2",
+  appVersion: "0.4.0",
   source: {
     title: "内容标题",
     type: "文章 / X / 播客 / 视频转写 / 用户粘贴",
     url: "https://example.com/…",
     scope: "全文",
+    paragraphs: [
+      {
+        id: "P01",
+        segments: [
+          { text: "未标注的原文" },
+          { text: "可分析词", tokenId: "t01" },
+        ],
+      },
+    ],
   },
   summary: {
     thesis: "一句话主旨",
@@ -66,6 +75,18 @@
       note: "审计备注",
     },
   ],
+  tokens: [
+    {
+      id: "t01",
+      word: "可分析词",
+      pos: "noun",
+      role: "对象或概念",
+      lens: "观点视角",
+      note: "说明为什么这样标注",
+      sentence: "所在原句",
+      source: "P01",
+    },
+  ],
   footerLink: {
     label: "进入苏苏的博客主页",
     url: "https://blog.brmys.cn",
@@ -73,7 +94,18 @@
 }
 ```
 
-四类词性可以由原文 token 标注自动去重汇总。每个 token 至少保留 `word`、`pos`、`role`、`lens`、`note`、`sentence` 和 `source`；汇总表显示频次、语义角色、论断视角和出现位置。词性不是事实/观点标签，页面文案要明确这两个维度不等价。
+`source.paragraphs[].segments` 是原文的唯一展示来源：不需要高亮的片段只写 `text`，需要高亮的片段同时写 `tokenId`；按数组顺序拼接后必须与原文完全一致。这样可以避免用字符偏移切分中文文本时出现错位。四类词性可以由 `tokens` 自动去重汇总。每个 token 至少保留 `id`、`word`、`pos`、`role`、`lens`、`note`、`sentence` 和 `source`；`pos` 使用 `noun`、`verb`、`adjective`、`adverb` 或 `other`。汇总表显示频次、语义角色、论断视角和出现位置。词性不是事实/观点标签，页面文案要明确这两个维度不等价。
+
+## 随附渲染器
+
+`scripts/render_html_report.py` 使用 Python 3 标准库，把上述 JSON 渲染成单文件 HTML。它负责 HTML 转义、原文段落排版、词性高亮、词语浮窗、筛选按钮、分析表格、统计数字、边界提示和页底外链。使用方式：
+
+```bash
+python3 scripts/render_html_report.py references/analysis-data.example.json \
+  --output 事实和观点判断-报告.html
+```
+
+渲染器不访问网络、不加载远程资源，也不会把分析内容上传到任何服务。没有 `segments` 或 `tokens` 时，它仍会生成可阅读的无高亮页面，并在页面中保留“未提供词语标注”的提示；不要为了填充高亮而编造词性。
 
 ## 视觉与交互基线
 
@@ -83,6 +115,7 @@
 - 统计数字只能来自 `analysisData`，不能手填后与表格数量不一致。
 - 所有原文和分析文本都应经过 HTML 转义；如果使用 `innerHTML` 渲染表格，必须先转义单元格内容。
 - 页面不依赖 CDN、远程字体或网络脚本；用户未要求时不采集、不发送阅读数据。
+- 词语详情使用文本节点展示，不把未经转义的用户原文拼进 `innerHTML`。
 
 ## 版本控制
 
@@ -116,3 +149,5 @@
 - [ ] 桌面端和窄屏端没有段落错位、横向溢出或不可访问控件。
 - [ ] 页面版本、项目 changelog 和数据接口保持一致。
 - [ ] 页底外链存在时能跳转到配置的主页，且使用新窗口安全属性。
+- [ ] 若明确要求网页，最终交付的是实际 `.html` 文件，而不是只有代码片段。
+- [ ] 使用随附脚本时，输入 JSON 与页面上的原文、统计和分析表保持一致。

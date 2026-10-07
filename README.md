@@ -6,7 +6,7 @@
 
 ### fact-opinion-judgment
 
-对文章、社交媒体内容、音视频转写稿或用户提供的文本做“事实和观点判断”：逐条拆出事实性断言、观点、立场、行动建议、论据和隐含假设，并列出名词、动词、形容词、副词及评价/模态词；用户要求时，还会生成带原文高亮、点击浮窗和分析表格的自包含 HTML 报告。当前 Skill 版本为 `v0.3.2`。
+对文章、社交媒体内容、音视频转写稿或用户提供的文本做“事实和观点判断”：逐条拆出事实性断言、观点、立场、行动建议、论据和隐含假设，并列出名词、动词、形容词、副词及评价/模态词；用户明确要求 HTML、网页或可分享报告时，会交付带原文高亮、点击浮窗和分析表格的自包含 `.html` 文件。当前 Skill 版本为 `v0.4.0`。
 
 它适合：
 
@@ -27,6 +27,16 @@ HTML 输出的数据接口、交互和版本规则见：
 ```text
 skills/fact-opinion-judgment/references/html-output.md
 ```
+
+随附的无依赖渲染器可以把结构化 `analysisData` 渲染成页面：
+
+```bash
+python3 skills/fact-opinion-judgment/scripts/render_html_report.py \
+  skills/fact-opinion-judgment/references/analysis-data.example.json \
+  --output 事实和观点判断-报告.html
+```
+
+页面包含原文段落、名词/动词/形容词/副词高亮、点击浮窗、事实/观点/行动/论证表格、待核验边界提示和已配置的“苏苏的博客主页”入口。渲染器只使用 Python 标准库，不加载 CDN，也不上传内容。
 
 可分发包：[fact-opinion-judgment.skill](fact-opinion-judgment.skill)
 
